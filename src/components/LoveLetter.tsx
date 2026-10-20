@@ -8,15 +8,9 @@ interface LoveLetterProps {
   onToggle: () => void;
 }
 
-const DEFAULT_NICKNAME = 'Em Bé Chuột của anh';
-const DEFAULT_SENDER_NAME = 'Người luôn yêu và cưng chiều em nhất';
-const DEFAULT_LETTER_BODY = `Nhân ngày Phụ Nữ Việt Nam 20/10, anh muốn gửi đến em tất cả những tình cảm dịu dàng và chân thành nhất từ tận đáy lòng.
-
-Cảm ơn em vì đã xuất hiện trong cuộc đời anh, mang theo nụ cười rạng rỡ làm sáng bừng cả những ngày giông bão. Cảm ơn từng khoảnh khắc mình bên nhau: từ những lúc em nhí nhảnh làm trò, những cái chu môi dỗi hờn đáng yêu, cho đến những giây phút em lặng lẽ tựa đầu vào vai anh bình yên.
-
-Anh không dám hứa cả thế giới sẽ luôn dịu dàng với em, nhưng anh hứa sẽ luôn đứng về phía em, bảo vệ em, lắng nghe mọi tâm sự và là nơi em có thể quay về trút bỏ mọi âu lo.
-
-Chúc cho em bé của anh luôn xinh đẹp, luôn tự tin, khỏe mạnh và mỗi ngày trôi qua đều ngập tràn tiếng cười. Hôm nay là 20/10, nhưng với anh, cả 365 ngày trong năm đều là ngày để yêu thương và trân trọng em.`;
+const DEFAULT_NICKNAME = "Em Bé Chuột của anh";
+const DEFAULT_SENDER_NAME = "Người luôn yêu và cưng chiều em nhất";
+const DEFAULT_LETTER_BODY = "Nhân ngày Phụ Nữ Việt Nam 20/10, anh muốn gửi đến em tất cả những tình cảm dịu dàng và chân thành nhất từ tận đáy lòng.\n\nCảm ơn em vì đã xuất hiện trong cuộc đời anh, mang theo nụ cười rạng rỡ làm sáng bừng cả những ngày giông bão. Cảm ơn từng khoảnh khắc mình bên nhau: từ những lúc em nhí nhảnh làm trò, những cái chu môi dỗi hờn đáng yêu, cho đến những lúc call với nhao.\n\nAnh không dám hứa cả thế giới sẽ luôn dịu dàng với em, nhưng anh hứa sẽ luôn đứng về phía em, bảo vệ em, lắng nghe mọi tâm sự và là nơi em có thể quay về trút bỏ mọi âu lo.\n\nChúc cho em bé của anh luôn xinh đẹp, luôn tự tin, khỏe mạnh và mỗi ngày trôi qua đều ngập tràn tiếng cười. Hôm nay là 20/10, nhưng với anh, cả 365 ngày trong năm đều là ngày để yêu thương và trân trọng em.";
 
 export const LoveLetter: React.FC<LoveLetterProps> = ({ isOpen, onToggle }) => {
   const isEditor = isEditorMode();
