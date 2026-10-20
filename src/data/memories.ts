@@ -52,9 +52,9 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     "id": "photo-5",
     "originalFileName": "IMG_20240518_211536.jpg",
-    "title": "Chụ bùn;-;",
+    "title": "Chụt bùn;-;",
     "caption": ";-; là một phần của con người em",
-    "dateStr": "Khoảnh khắc nhớ thương",
+    "dateStr": ".",
     "tag": "Dịu dàng",
     "sticker": "👀",
     "rotationDeg": -3,
