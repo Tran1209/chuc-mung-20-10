@@ -1,0 +1,6 @@
+{
+  "name": "Chuc Mung 20/10 Em Yeu - Happy Vietnamese Women's Day",
+  "description": "Website lãng mạn dành tặng người yêu ngày Phụ nữ Việt Nam 20/10 với bộ sưu tập ảnh kỷ niệm, thư tình, bản nhạc acoustic và quà tặng bất ngờ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
