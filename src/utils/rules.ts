@@ -54,6 +54,15 @@ export function calculateRedeemedCoupons(coupons: { isRedeemed: boolean }[]): {
   return { redeemedCount, totalCount, percent };
 }
 
+export function isEditorMode(): boolean {
+  if (typeof window === 'undefined') return false;
+  return (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname.startsWith('192.168.')
+  );
+}
+
 export function sanitizeWish(input: string): { valid: boolean; message: string; sanitized: string } {
   const trimmed = input.trim();
   if (trimmed.length === 0) {

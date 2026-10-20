@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, SkipForward, Volume2, VolumeX, Music2, Upload } from 'lucide-react';
 import { romanticAudio } from '../utils/audio.ts';
 import { savePhotoToDB, getPhotoFromDB } from '../utils/storage.ts';
+import { isEditorMode } from '../utils/rules.ts';
 
 interface MusicPlayerProps {
   isPlaying: boolean;
@@ -16,6 +17,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   trackName,
   onTrackChange,
 }) => {
+  const isEditor = isEditorMode();
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [prevVolume, setPrevVolume] = useState<number>(0.75);
   const [volume, setVolume] = useState<number>(() => {
@@ -157,21 +159,25 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
         </button>
 
         {/* Custom MP3 File Selector */}
-        <button
-          onClick={() => fileInputRef.current?.click()}
-          aria-label="Tải file MP3 Nơi Này Có Anh từ máy"
-          title="Tải lên file MP3 bài Nơi Này Có Anh của riêng bạn"
-          className="p-1.5 rounded-full hover:bg-rose-50 text-rose-600 transition-colors cursor-pointer"
-        >
-          <Upload className="w-3.5 h-3.5" />
-        </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="audio/*"
-          className="hidden"
-          onChange={handleAudioUpload}
-        />
+        {isEditor && (
+          <>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              aria-label="Tải file MP3 Nơi Này Có Anh từ máy"
+              title="Tải lên file MP3 bài Nơi Này Có Anh của riêng bạn"
+              className="p-1.5 rounded-full hover:bg-rose-50 text-rose-600 transition-colors cursor-pointer"
+            >
+              <Upload className="w-3.5 h-3.5" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              className="hidden"
+              onChange={handleAudioUpload}
+            />
+          </>
+        )}
 
         <button
           onClick={toggleMute}

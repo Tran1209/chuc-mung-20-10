@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, Sparkles, Clock } from 'lucide-react';
-import { calculateDaysTogether, getGreetingByHour } from '../utils/rules.ts';
+import { calculateDaysTogether, getGreetingByHour, isEditorMode } from '../utils/rules.ts';
 
 interface HeroSectionProps {
   onOpenLetter: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenLetter }) => {
+  const isEditor = isEditorMode();
   // Count starting from 1/7/2026 (July 1st, 2026) as requested
   const [anniversaryDate, setAnniversaryDate] = useState<string>(() => {
     try {
@@ -82,7 +83,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenLetter }) => {
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif-romantic font-bold text-stone-900 tracking-tight leading-tight md:leading-tight mb-6">
           Chúc Mừng 20/10 <br className="hidden sm:inline" />
-          {isEditingName ? (
+          {isEditor && isEditingName ? (
             <span className="inline-flex items-center gap-2">
               <input
                 type="text"
@@ -105,9 +106,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenLetter }) => {
             </span>
           ) : (
             <span
-              onClick={() => setIsEditingName(true)}
-              title="Nhấn để đổi tên/biệt danh"
-              className="text-rose-600 italic cursor-pointer hover:underline decoration-rose-300 decoration-wavy"
+              onClick={() => isEditor && setIsEditingName(true)}
+              title={isEditor ? 'Nhấn để đổi tên/biệt danh' : undefined}
+              className={`text-rose-600 italic ${
+                isEditor ? 'cursor-pointer hover:underline decoration-rose-300 decoration-wavy' : ''
+              }`}
             >
               {herName}
             </span>
@@ -128,13 +131,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenLetter }) => {
               <Heart className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
               Hành Trình Yêu Thương
             </span>
-            <button
-              onClick={() => setIsEditingDate(!isEditingDate)}
-              className="text-stone-400 hover:text-stone-700 transition-colors underline text-xs cursor-pointer"
-              title="Đổi ngày kỷ niệm"
-            >
-              {isEditingDate ? 'Đóng' : 'Đổi ngày'}
-            </button>
+            {isEditor && (
+              <button
+                onClick={() => setIsEditingDate(!isEditingDate)}
+                className="text-stone-400 hover:text-stone-700 transition-colors underline text-xs cursor-pointer"
+                title="Đổi ngày kỷ niệm"
+              >
+                {isEditingDate ? 'Đóng' : 'Đổi ngày'}
+              </button>
+            )}
           </div>
 
           {isEditingDate ? (

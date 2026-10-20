@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, MailOpen, Edit3, Check, Copy, RotateCcw, Save } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { isEditorMode } from '../utils/rules.ts';
 
 interface LoveLetterProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ Anh không dám hứa cả thế giới sẽ luôn dịu dàng với em, nhưng 
 Chúc cho em bé của anh luôn xinh đẹp, luôn tự tin, khỏe mạnh và mỗi ngày trôi qua đều ngập tràn tiếng cười. Hôm nay là 20/10, nhưng với anh, cả 365 ngày trong năm đều là ngày để yêu thương và trân trọng em.`;
 
 export const LoveLetter: React.FC<LoveLetterProps> = ({ isOpen, onToggle }) => {
+  const isEditor = isEditorMode();
   const [nickname, setNickname] = useState<string>(() => {
     try {
       return localStorage.getItem('love_letter_nickname_2010') || DEFAULT_NICKNAME;
@@ -175,7 +177,7 @@ export const LoveLetter: React.FC<LoveLetterProps> = ({ isOpen, onToggle }) => {
           <div className="relative bg-[#fffdf9] border border-amber-200/80 rounded-3xl p-6 sm:p-12 shadow-xl animate-fade-in relative overflow-hidden">
             {/* Top vintage stamp */}
             <div className="absolute top-6 right-6 flex items-center gap-2">
-              {savedBadge && (
+              {isEditor && savedBadge && (
                 <span className="animate-fade-in text-xs text-emerald-700 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full font-medium flex items-center gap-1 shadow-2xs">
                   <Check className="w-3 h-3 text-emerald-600" />
                   Đã lưu vào trình duyệt
@@ -191,7 +193,7 @@ export const LoveLetter: React.FC<LoveLetterProps> = ({ isOpen, onToggle }) => {
                 <span>{copied ? 'Đã chép' : 'Sao chép'}</span>
               </button>
 
-              {isEditing && (
+              {isEditor && isEditing && (
                 <button
                   onClick={handleResetDefault}
                   className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 transition-colors"
@@ -202,27 +204,29 @@ export const LoveLetter: React.FC<LoveLetterProps> = ({ isOpen, onToggle }) => {
                 </button>
               )}
 
-              <button
-                onClick={handleToggleEdit}
-                className={`flex items-center gap-1 px-3 py-1 text-xs rounded-lg border font-medium transition-colors ${
-                  isEditing
-                    ? 'border-emerald-300 bg-emerald-500 text-white hover:bg-emerald-600 shadow-xs'
-                    : 'border-amber-200 bg-amber-50/60 text-stone-600 hover:text-stone-900'
-                }`}
-                title="Tùy chỉnh nội dung thư"
-              >
-                {isEditing ? (
-                  <>
-                    <Save className="w-3.5 h-3.5" />
-                    <span>Lưu lại</span>
-                  </>
-                ) : (
-                  <>
-                    <Edit3 className="w-3.5 h-3.5" />
-                    <span>Sửa thư</span>
-                  </>
-                )}
-              </button>
+              {isEditor && (
+                <button
+                  onClick={handleToggleEdit}
+                  className={`flex items-center gap-1 px-3 py-1 text-xs rounded-lg border font-medium transition-colors ${
+                    isEditing
+                      ? 'border-emerald-300 bg-emerald-500 text-white hover:bg-emerald-600 shadow-xs'
+                      : 'border-amber-200 bg-amber-50/60 text-stone-600 hover:text-stone-900'
+                  }`}
+                  title="Tùy chỉnh nội dung thư"
+                >
+                  {isEditing ? (
+                    <>
+                      <Save className="w-3.5 h-3.5" />
+                      <span>Lưu lại</span>
+                    </>
+                  ) : (
+                    <>
+                      <Edit3 className="w-3.5 h-3.5" />
+                      <span>Sửa thư</span>
+                    </>
+                  )}
+                </button>
+              )}
             </div>
 
             {/* Letter Salutation */}

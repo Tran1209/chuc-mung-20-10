@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Heart, Search, Upload, X, ZoomIn, Camera, Sparkles, ImagePlus, Edit3, Check, RotateCcw } from 'lucide-react';
 import { MemoryCard } from '../types/index.ts';
 import { INITIAL_MEMORIES } from '../data/memories.ts';
-import { filterMemories } from '../utils/rules.ts';
+import { filterMemories, isEditorMode } from '../utils/rules.ts';
 import { savePhotoToDB, getAllPhotosFromDB, clearAllPhotosDB } from '../utils/storage.ts';
 import confetti from 'canvas-confetti';
 
@@ -11,6 +11,7 @@ interface MemoryGalleryProps {
 }
 
 export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
+  const isEditor = isEditorMode();
   // Load metadata from localStorage if previously edited
   const [memories, setMemories] = useState<MemoryCard[]>(() => {
     try {
@@ -342,23 +343,27 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
               />
             </div>
 
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-2xs cursor-pointer"
-              title="Chọn ảnh từ máy để nạp vào album"
-            >
-              <ImagePlus className="w-3.5 h-3.5" />
-              <span>Nạp ảnh từ máy</span>
-            </button>
+            {isEditor && (
+              <>
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-2xs cursor-pointer"
+                  title="Chọn ảnh từ máy để nạp vào album"
+                >
+                  <ImagePlus className="w-3.5 h-3.5" />
+                  <span>Nạp ảnh từ máy</span>
+                </button>
 
-            <button
-              onClick={handleResetAllAlbum}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-stone-50 text-stone-600 hover:bg-stone-100 border border-stone-200 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-2xs cursor-pointer"
-              title="Khôi phục album về ảnh và chú thích ban đầu"
-            >
-              <RotateCcw className="w-3 h-3 text-stone-500" />
-              <span className="hidden sm:inline">Khôi phục gốc</span>
-            </button>
+                <button
+                  onClick={handleResetAllAlbum}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-stone-50 text-stone-600 hover:bg-stone-100 border border-stone-200 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-2xs cursor-pointer"
+                  title="Khôi phục album về ảnh và chú thích ban đầu"
+                >
+                  <RotateCcw className="w-3 h-3 text-stone-500" />
+                  <span className="hidden sm:inline">Khôi phục gốc</span>
+                </button>
+              </>
+            )}
             <input
               ref={fileInputRef}
               type="file"
@@ -434,16 +439,18 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                       </span>
                     </div>
 
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSingleUpload(card.id);
-                      }}
-                      className="w-full py-1.5 px-2 rounded-xl bg-white/80 hover:bg-white text-stone-700 text-[11px] font-medium transition-colors flex items-center justify-center gap-1 shadow-2xs"
-                    >
-                      <Camera className="w-3 h-3 text-rose-500" />
-                      <span>Chọn ảnh từ máy</span>
-                    </button>
+                    {isEditor && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSingleUpload(card.id);
+                        }}
+                        className="w-full py-1.5 px-2 rounded-xl bg-white/80 hover:bg-white text-stone-700 text-[11px] font-medium transition-colors flex items-center justify-center gap-1 shadow-2xs"
+                      >
+                        <Camera className="w-3 h-3 text-rose-500" />
+                        <span>Chọn ảnh từ máy</span>
+                      </button>
+                    )}
                   </div>
 
                   {/* Overlay badge with sticker and tag */}
@@ -452,16 +459,18 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                   </div>
 
                   {/* Quick replace button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSingleUpload(card.id);
-                    }}
-                    title="Cập nhật hoặc tải ảnh cho thẻ này"
-                    className="absolute top-2 right-2 p-1.5 rounded-full bg-white/90 text-stone-600 hover:text-rose-600 hover:bg-white shadow-2xs transition-colors"
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                  </button>
+                  {isEditor && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSingleUpload(card.id);
+                      }}
+                      title="Cập nhật hoặc tải ảnh cho thẻ này"
+                      className="absolute top-2 right-2 p-1.5 rounded-full bg-white/90 text-stone-600 hover:text-rose-600 hover:bg-white shadow-2xs transition-colors"
+                    >
+                      <Camera className="w-3.5 h-3.5" />
+                    </button>
+                  )}
 
                   <div className="absolute inset-0 bg-rose-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="px-3 py-1.5 rounded-full bg-white/90 text-xs font-medium text-stone-800 flex items-center gap-1 shadow-sm">
@@ -625,23 +634,25 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap sm:flex-col gap-2 shrink-0 w-full sm:w-auto">
-                    <button
-                      onClick={() => setIsEditingModal(true)}
-                      className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium text-xs shadow-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
-                    >
-                      <Edit3 className="w-3.5 h-3.5" />
-                      <span>Sửa tên & dòng chữ nhỏ</span>
-                    </button>
+                  {isEditor && (
+                    <div className="flex flex-wrap sm:flex-col gap-2 shrink-0 w-full sm:w-auto">
+                      <button
+                        onClick={() => setIsEditingModal(true)}
+                        className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium text-xs shadow-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
+                      >
+                        <Edit3 className="w-3.5 h-3.5" />
+                        <span>Sửa tên & dòng chữ nhỏ</span>
+                      </button>
 
-                    <button
-                      onClick={() => handleSingleUpload(activeModalCard.id)}
-                      className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
-                    >
-                      <Camera className="w-3.5 h-3.5" />
-                      <span>Đổi ảnh khác</span>
-                    </button>
-                  </div>
+                      <button
+                        onClick={() => handleSingleUpload(activeModalCard.id)}
+                        className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
+                      >
+                        <Camera className="w-3.5 h-3.5" />
+                        <span>Đổi ảnh khác</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
