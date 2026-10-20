@@ -465,25 +465,15 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
 
                 {/* Card caption info */}
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h3 className="font-serif-romantic font-bold text-stone-900 text-sm truncate">
-                      {card.title}
-                    </h3>
-                    <button
-                      onClick={(e) => handleLike(e, card.id)}
-                      className="flex items-center gap-1 text-xs text-rose-500 hover:text-rose-600 transition-colors shrink-0"
-                      title="Thả tim cho khoảnh khắc này"
-                    >
-                      <Heart className="w-3.5 h-3.5 fill-rose-500" />
-                      <span className="tabular-nums font-mono text-[11px]">{card.likes}</span>
-                    </button>
-                  </div>
+                  <h3 className="font-serif-romantic font-bold text-stone-900 text-sm truncate mb-1">
+                    {card.title}
+                  </h3>
                   <p className="text-xs text-stone-500 line-clamp-2 leading-relaxed">
                     {card.caption}
                   </p>
-                  <div className="mt-2 text-[10px] text-stone-400 flex items-center justify-between">
-                    <span>{card.dateStr}</span>
-                    <span className="font-mono truncate max-w-[100px]">{card.originalFileName}</span>
+                  <div className="mt-2.5 text-[11px] text-stone-500 flex items-center justify-between">
+                    <span className="font-medium text-rose-600">{card.dateStr}</span>
+                    <span className="text-stone-400">#{card.tag}</span>
                   </div>
                 </div>
               </div>
@@ -540,12 +530,13 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
 
                   <div>
                     <label className="text-[11px] font-semibold text-stone-600 block mb-1">
-                      Tiêu đề ảnh:
+                      Tên / Tiêu đề ảnh:
                     </label>
                     <input
                       type="text"
                       value={modalEditTitle}
                       onChange={(e) => setModalEditTitle(e.target.value)}
+                      placeholder="VD: Bé yêu nụ cười tỏa nắng..."
                       className="w-full text-sm font-semibold px-3 py-1.5 bg-white border border-rose-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-rose-400"
                     />
                   </div>
@@ -558,6 +549,7 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                       rows={3}
                       value={modalEditCaption}
                       onChange={(e) => setModalEditCaption(e.target.value)}
+                      placeholder="Lời nhắn ngọt ngào dành cho bức ảnh..."
                       className="w-full text-xs text-stone-700 px-3 py-2 bg-white border border-rose-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-rose-400"
                     />
                   </div>
@@ -565,13 +557,13 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="text-[11px] font-semibold text-stone-600 block mb-1">
-                        Ngày / Dịp kỷ niệm:
+                        Dòng chữ nhỏ (Dịp kỷ niệm / Ngày):
                       </label>
                       <input
                         type="text"
                         value={modalEditDate}
                         onChange={(e) => setModalEditDate(e.target.value)}
-                        placeholder="VD: 18/06/2023 hoặc Đáng yêu"
+                        placeholder="VD: 18/06/2023 hoặc Khoảnh khắc đáng yêu"
                         className="w-full text-xs px-2.5 py-1.5 bg-white border border-rose-200 rounded-xl focus:outline-none"
                       />
                     </div>
@@ -623,9 +615,7 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
                       {activeModalCard.caption}
                     </p>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-stone-400 mt-3">
-                      <span>{activeModalCard.dateStr}</span>
-                      <span>·</span>
-                      <span className="font-mono">Tệp: {activeModalCard.originalFileName}</span>
+                      <span className="font-medium text-stone-600">{activeModalCard.dateStr}</span>
                       <span>·</span>
                       <span className="text-rose-600 font-medium">#{activeModalCard.tag}</span>
                     </div>
@@ -633,24 +623,16 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
 
                   <div className="flex flex-wrap sm:flex-col gap-2 shrink-0 w-full sm:w-auto">
                     <button
-                      onClick={(e) => handleLike(e, activeModalCard.id)}
-                      className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium text-xs shadow-sm transition-all cursor-pointer flex-1 sm:flex-initial"
-                    >
-                      <Heart className="w-4 h-4 fill-white" />
-                      <span>{activeModalCard.likes} Yêu thương</span>
-                    </button>
-
-                    <button
                       onClick={() => setIsEditingModal(true)}
-                      className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
+                      className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium text-xs shadow-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
-                      <span>Sửa chú thích</span>
+                      <span>Sửa tên & dòng chữ nhỏ</span>
                     </button>
 
                     <button
                       onClick={() => handleSingleUpload(activeModalCard.id)}
-                      className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
+                      className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors cursor-pointer flex-1 sm:flex-initial"
                     >
                       <Camera className="w-3.5 h-3.5" />
                       <span>Đổi ảnh khác</span>
