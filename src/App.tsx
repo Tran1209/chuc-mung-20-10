@@ -80,8 +80,8 @@ export default function App() {
       });
 
       if (!res.ok) throw new Error('Sync failed');
-      setSyncStatus('✓ ĐÃ ĐỒNG BỘ XONG! Mở điện thoại lên là thấy 100%!');
-      setTimeout(() => setSyncStatus(''), 7000);
+      setSyncStatus('✓ ĐÃ ĐỒNG BỘ LÊN GITHUB THÀNH CÔNG! (GitHub mất khoảng 30s-1 phút để cập nhật, trên điện thoại mở tab ẩn danh hoặc tải lại trang là thấy ngay nhé!)');
+      setTimeout(() => setSyncStatus(''), 10000);
     } catch (err) {
       console.error(err);
       setSyncStatus('Lỗi đồng bộ. Vui lòng thử lại!');
