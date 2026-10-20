@@ -28,9 +28,9 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     "id": "photo-3",
     "originalFileName": "IMG20240511154505.jpg",
-    "title": "Chụt nùn",
-    "caption": "Nhìn anh là phải ngước nghe chưa=)))))))))",
-    "dateStr": "Giấc ngủ êm đềm",
+    "title": "Chụt đi tơi",
+    "caption": "Mún đèo chụt đi chơi :VVVv",
+    "dateStr": ".",
     "tag": "Bình yên",
     "sticker": "🐰",
     "rotationDeg": -1,
@@ -52,8 +52,8 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     "id": "photo-5",
     "originalFileName": "IMG_20240518_211536.jpg",
-    "title": "Đôi Mắt Biết Nói",
-    "caption": "Chỉ cần nhìn vào đôi mắt em là anh thấy cả thế giới dịu dàng.",
+    "title": "Chụ bùn;-;",
+    "caption": ";-; là một phần của con người em",
     "dateStr": "Khoảnh khắc nhớ thương",
     "tag": "Dịu dàng",
     "sticker": "👀",
@@ -88,14 +88,14 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     "id": "photo-8",
     "originalFileName": "IMG_20250606_195224.jpg",
-    "title": "Bé Penguin Cưng Xỉu",
-    "caption": "Ôm em chim cánh cụt bông dễ thương y như chính cô chủ nhỏ.",
-    "dateStr": "06/06/2025",
+    "title": "Chụt ôm Nam=))))))))))))))))))",
+    "caption": "Ai cho ômmmmmmmmmmmmmmmm=)))",
+    "dateStr": ".",
     "tag": "Đáng yêu",
     "sticker": "🐧",
     "rotationDeg": 2,
     "likes": 45,
-    "imageUrl": "./photo_8.jpg"
+    "imageUrl": "./synced_photo-8.jpg"
   },
   {
     "id": "photo-9",
