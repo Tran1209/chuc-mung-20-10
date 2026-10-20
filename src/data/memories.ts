@@ -189,44 +189,9 @@ export const INITIAL_COUPONS: LoveCoupon[] = [
 export const REASONS_LOVE: ReasonLove[] = [
   {
     id: 1,
-    title: 'Nụ cười tỏa nắng của em',
-    description: 'Mỗi lần em cười, khóe mắt cong cong, mọi mệt mỏi trong anh dường như tan biến không còn một dấu vết.',
-    emoji: '☀️',
-    bgGradient: 'bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200/60',
-  },
-  {
-    id: 2,
-    title: 'Chiếc mũi heo hờn dỗi siêu cưng',
-    description: 'Những lúc em làm nũng hay giả vờ giận dỗi, dáng vẻ ấy cưng đến mức anh chỉ muốn ôm chặt em vào lòng.',
-    emoji: '🐷',
-    bgGradient: 'bg-gradient-to-br from-pink-50 to-rose-50 border-rose-200/60',
-  },
-  {
-    id: 3,
-    title: 'Sự dịu dàng và quan tâm',
-    description: 'Cách em hỏi han anh ăn cơm chưa, nhắc anh ngủ sớm, từng cử chỉ nhỏ đều chan chứa sự ấm áp vô bờ.',
-    emoji: '🌸',
-    bgGradient: 'bg-gradient-to-br from-rose-50 to-pink-50 border-pink-200/60',
-  },
-  {
-    id: 4,
-    title: 'Đôi mắt to tròn biết nói',
-    description: 'Anh có thể ngắm đôi mắt ấy cả ngày mà không chán, bởi trong đó anh thấy cả bầu trời bình yên của mình.',
-    emoji: '👀',
-    bgGradient: 'bg-gradient-to-br from-sky-50 to-blue-50 border-blue-200/60',
-  },
-  {
-    id: 5,
-    title: 'Nét tinh nghịch, lí lắc',
-    description: 'Những câu trêu đùa, những tấm ảnh dìm dễ thương hay filter nhí nhảnh luôn khiến tình yêu của mình ngập tiếng cười.',
-    emoji: '🎈',
-    bgGradient: 'bg-gradient-to-br from-violet-50 to-purple-50 border-purple-200/60',
-  },
-  {
-    id: 6,
     title: 'Vì em là chính em',
     description: 'Không cần hoàn hảo, chỉ cần là em bé chân thành, mộc mạc và đáng yêu nhất mà số phận đã trao tặng cho anh.',
     emoji: '💎',
-    bgGradient: 'bg-gradient-to-br from-emerald-50 to-teal-50 border-teal-200/60',
+    bgGradient: 'bg-gradient-to-br from-rose-50 via-pink-50 to-amber-50 border-rose-200/80 shadow-md',
   },
 ];
