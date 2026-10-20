@@ -4,8 +4,8 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     id: 'photo-1',
     originalFileName: 'Chuột chanel',
-    title: 'Bé Chuột Chanel Nhí Nhảnh',
-    caption: 'Chiếc filter Chanel và biểu cảm đáng yêu độc nhất vô nhị của cô người yêu bé bỏng.',
+    title: 'Chuột hư',
+    caption: 'Chiếc filter heo con và biểu cảm đáng yêu độc nhất vô nhị của cô người yêu bé bỏng.',
     dateStr: 'Khoảnh khắc đáng yêu',
     tag: 'Đáng yêu',
     sticker: '🎀',
@@ -16,8 +16,8 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     id: 'photo-2',
     originalFileName: 'IMG_20230618_100701.jpg',
-    title: 'Nụ Cười Tỏa Nắng Bên Sách',
-    caption: 'Chiếc bờm ngọc trai xinh xắn, nụ cười hở răng rạng ngời làm sáng bừng cả căn phòng.',
+    title: 'Thường ngày, dịu dàng:>',
+    caption: 'Đơn giản nhưng khiến người ta xao xuyến quá iu ơi=)',
     dateStr: '18/06/2023',
     tag: 'Rạng rỡ',
     sticker: '✨',
@@ -28,8 +28,8 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
   {
     id: 'photo-3',
     originalFileName: '4b0e288e0851412ea605260f9d0327ec.png',
-    title: 'Bé Thỏ Lấp Lánh Trong Giấc Ngủ',
-    caption: 'Filter tai thỏ lấp lánh như ngàn vì sao, thiên thần nhỏ của anh lúc nào cũng ngọt ngào.',
+    title: 'Chụt nùn',
+    caption: 'Nhìn anh là phải ngước nghe chưa=)))))))))',
     dateStr: 'Giấc ngủ êm đềm',
     tag: 'Bình yên',
     sticker: '🐰',
