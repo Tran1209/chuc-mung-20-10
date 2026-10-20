@@ -80,6 +80,14 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
     });
   }, []);
 
+  const resolveImageSrc = (card: MemoryCard): string => {
+    if (card.customImageData) return card.customImageData;
+    if (card.imageUrl) {
+      return card.imageUrl.startsWith('/') ? '.' + card.imageUrl : card.imageUrl;
+    }
+    return `./${card.originalFileName}`;
+  };
+
   const filteredList = filterMemories(memories, selectedCategory, searchQuery);
 
   const categories = [
@@ -372,7 +380,7 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
         {/* Polaroid Scrapbook Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {filteredList.map((card) => {
-            const imgSrc = card.customImageData || card.imageUrl || `/${card.originalFileName}`;
+            const imgSrc = resolveImageSrc(card);
             const tagColor = getTagColorClass(card.tag);
 
             return (
@@ -507,11 +515,7 @@ export const MemoryGallery: React.FC<MemoryGalleryProps> = () => {
 
               <div className="aspect-[4/3] w-full bg-stone-100 rounded-2xl overflow-hidden mb-5 border border-stone-200">
                 <img
-                  src={
-                    activeModalCard.customImageData ||
-                    activeModalCard.imageUrl ||
-                    `/${activeModalCard.originalFileName}`
-                  }
+                  src={resolveImageSrc(activeModalCard)}
                   alt={activeModalCard.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-contain bg-stone-950"

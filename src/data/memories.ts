@@ -11,7 +11,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🎀',
     rotationDeg: -2,
     likes: 24,
-    imageUrl: '/media_1792301968387_cad4fc72.png',
+    imageUrl: './media_1792301968387_cad4fc72.png',
   },
   {
     id: 'photo-2',
@@ -23,7 +23,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '✨',
     rotationDeg: 3,
     likes: 42,
-    imageUrl: '/media_1792301989255_f75a59da.png',
+    imageUrl: './media_1792301989255_f75a59da.png',
   },
   {
     id: 'photo-3',
@@ -35,7 +35,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🐰',
     rotationDeg: -1,
     likes: 38,
-    imageUrl: '/media_1792302010689_942a5024.png',
+    imageUrl: './media_1792302010689_942a5024.png',
   },
   {
     id: 'photo-4',
@@ -47,7 +47,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🌸',
     rotationDeg: 2,
     likes: 35,
-    imageUrl: '/media_1792302033907_2fc53bb5.png',
+    imageUrl: './media_1792302033907_2fc53bb5.png',
   },
   {
     id: 'photo-5',
@@ -59,7 +59,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '✌️',
     rotationDeg: -3,
     likes: 56,
-    imageUrl: '/media_1792302053325_1066eb49.png',
+    imageUrl: './media_1792302053325_1066eb49.png',
   },
   {
     id: 'photo-6',
@@ -71,7 +71,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🐷',
     rotationDeg: 1,
     likes: 49,
-    imageUrl: '/media_1792302076726_f383d638.png',
+    imageUrl: './media_1792302076726_f383d638.png',
   },
   {
     id: 'photo-7',
@@ -83,7 +83,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🪞',
     rotationDeg: -2,
     likes: 31,
-    imageUrl: '/media_1792302094646_4529b08a.png',
+    imageUrl: './media_1792302094646_4529b08a.png',
   },
   {
     id: 'photo-8',
@@ -95,7 +95,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🌹',
     rotationDeg: 2,
     likes: 45,
-    imageUrl: '/media_1792302204381_9681ef38.png',
+    imageUrl: './media_1792302204381_9681ef38.png',
   },
   {
     id: 'photo-9',
@@ -107,7 +107,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🦋',
     rotationDeg: -1,
     likes: 39,
-    imageUrl: '/media_1792432287227_e9a5f087.png',
+    imageUrl: './media_1792432287227_e9a5f087.png',
   },
   {
     id: 'photo-10',
@@ -119,7 +119,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '🍭',
     rotationDeg: 3,
     likes: 33,
-    imageUrl: '/media_1792432538658_aa17f29d.png',
+    imageUrl: './media_1792432538658_aa17f29d.png',
   },
   {
     id: 'photo-11',
@@ -131,7 +131,7 @@ export const INITIAL_MEMORIES: MemoryCard[] = [
     sticker: '💖',
     rotationDeg: -2,
     likes: 51,
-    imageUrl: '/media_1792432988452_e6876901.png',
+    imageUrl: './media_1792432988452_e6876901.png',
   },
 ];
 

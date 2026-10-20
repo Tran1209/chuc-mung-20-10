@@ -9,7 +9,7 @@ class RomanticAudioEngine {
   private currentTrackIndex = 0;
   private volume = 0.75;
   private audioElement: HTMLAudioElement | null = null;
-  private customAudioUrl: string | null = null;
+  private customAudioUrl: string | null = './music.m4a';
 
   private tracks = [
     {
