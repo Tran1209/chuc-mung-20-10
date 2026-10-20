@@ -17,17 +17,20 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   onTrackChange,
 }) => {
   const [isMuted, setIsMuted] = useState<boolean>(false);
-  const [prevVolume, setPrevVolume] = useState<number>(0.45);
+  const [prevVolume, setPrevVolume] = useState<number>(0.75);
   const [volume, setVolume] = useState<number>(() => {
     try {
       const saved = localStorage.getItem('romantic_music_volume_2010');
       if (saved) {
         const parsed = parseFloat(saved);
-        romanticAudio.setVolume(parsed);
-        return parsed;
+        if (parsed > 0) {
+          romanticAudio.setVolume(parsed);
+          return parsed;
+        }
       }
     } catch {}
-    return 0.45;
+    romanticAudio.setVolume(0.75);
+    return 0.75;
   });
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -65,15 +68,22 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   };
 
   const toggleMute = () => {
-    if (isMuted) {
+    if (isMuted || volume === 0) {
       setIsMuted(false);
-      setVolume(prevVolume || 0.45);
-      romanticAudio.setVolume(prevVolume || 0.45);
+      const newVol = prevVolume > 0 ? prevVolume : 0.75;
+      setVolume(newVol);
+      romanticAudio.setVolume(newVol);
+      try {
+        localStorage.setItem('romantic_music_volume_2010', newVol.toString());
+      } catch {}
     } else {
-      setPrevVolume(volume);
+      setPrevVolume(volume > 0 ? volume : 0.75);
       setIsMuted(true);
       setVolume(0);
       romanticAudio.setVolume(0);
+      try {
+        localStorage.setItem('romantic_music_volume_2010', '0');
+      } catch {}
     }
   };
 
@@ -165,8 +175,13 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
         <button
           onClick={toggleMute}
-          aria-label={isMuted ? 'Bật âm thanh' : 'Tắt tiếng'}
-          className="p-1.5 rounded-full hover:bg-stone-100 text-stone-600 transition-colors hidden sm:inline-flex cursor-pointer"
+          aria-label={isMuted || volume === 0 ? 'Bật âm thanh loa' : 'Tắt tiếng'}
+          title={isMuted || volume === 0 ? 'Bật âm thanh loa' : 'Tắt tiếng'}
+          className={`p-1.5 rounded-full transition-colors inline-flex cursor-pointer ${
+            isMuted || volume === 0
+              ? 'bg-rose-100 text-rose-600 hover:bg-rose-200 ring-2 ring-rose-300'
+              : 'hover:bg-stone-100 text-rose-500'
+          }`}
         >
           {isMuted || volume === 0 ? (
             <VolumeX className="w-3.5 h-3.5" />

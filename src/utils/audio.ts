@@ -7,7 +7,7 @@ class RomanticAudioEngine {
   private timerId: number | null = null;
   private masterGain: GainNode | null = null;
   private currentTrackIndex = 0;
-  private volume = 0.45;
+  private volume = 0.75;
   private audioElement: HTMLAudioElement | null = null;
   private customAudioUrl: string | null = null;
 
