@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { PetalCanvas } from './components/PetalCanvas.tsx';
 import { HeroSection } from './components/HeroSection.tsx';
@@ -16,7 +16,7 @@ import { Footer } from './components/Footer.tsx';
 import { romanticAudio } from './utils/audio.ts';
 
 export default function App() {
-  const [isPlayingMusic, setIsPlayingMusic] = useState<boolean>(false);
+  const [isPlayingMusic, setIsPlayingMusic] = useState<boolean>(true);
   const [trackName, setTrackName] = useState<string>(() => {
     try {
       return localStorage.getItem('romantic_track_name_2010') || romanticAudio.getTrackName();
@@ -25,6 +25,29 @@ export default function App() {
     }
   });
   const [isLetterOpen, setIsLetterOpen] = useState<boolean>(false);
+
+  // Autoplay music on site open (with fallback for browser autoplay policies)
+  useEffect(() => {
+    romanticAudio.play();
+    setIsPlayingMusic(true);
+
+    const handleFirstTouch = () => {
+      romanticAudio.play();
+      setIsPlayingMusic(true);
+    };
+
+    window.addEventListener('click', handleFirstTouch, { once: true });
+    window.addEventListener('touchstart', handleFirstTouch, { once: true });
+    window.addEventListener('scroll', handleFirstTouch, { once: true });
+    window.addEventListener('keydown', handleFirstTouch, { once: true });
+
+    return () => {
+      window.removeEventListener('click', handleFirstTouch);
+      window.removeEventListener('touchstart', handleFirstTouch);
+      window.removeEventListener('scroll', handleFirstTouch);
+      window.removeEventListener('keydown', handleFirstTouch);
+    };
+  }, []);
 
   const toggleMusic = () => {
     const nextState = romanticAudio.toggle();

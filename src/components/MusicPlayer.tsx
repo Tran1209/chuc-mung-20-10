@@ -37,9 +37,12 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
       if (savedAudioUrl) {
         romanticAudio.setCustomAudio(savedAudioUrl);
         onTrackChange('Nơi Này Có Anh (Bản thu âm MP3)');
+        if (isPlaying) {
+          romanticAudio.play();
+        }
       }
     });
-  }, [onTrackChange]);
+  }, [onTrackChange, isPlaying]);
 
   const handleNextTrack = () => {
     const nextName = romanticAudio.nextTrack();
